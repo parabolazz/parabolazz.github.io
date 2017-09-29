@@ -37,7 +37,7 @@
     
     <title>
         
-            归档: 2016/3 | 
+            从闭包谈回闭包 | 
         
         Hexo
     </title>
@@ -231,15 +231,18 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2016/3 | Hexo">
+    <meta property="og:title" content="从闭包谈回闭包 | Hexo">
     <meta property="og:image" content="http://yoursite.com/img/favicon.png" />
     <meta property="og:description" content="">
     
 
     
+        <meta property="article:published_time" content="Fri May 27 2016 22:48:17 GMT+0800" />
+        <meta property="article:modified_time" content="Fri Sep 29 2017 22:54:43 GMT+0800" />
+    
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="归档: 2016/3 | Hexo">
+    <meta name="twitter:title" content="从闭包谈回闭包 | Hexo">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="http://yoursite.com/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -247,13 +250,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/archives/2016/03/index.html" />
+        <link rel="canonical" href="http://yoursite.com/2016/05/27/从闭包谈回闭包/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://yoursite.com/2016/05/27/从闭包谈回闭包/index.html",
+    "headline": "从闭包谈回闭包",
+    "datePublished": "Fri May 27 2016 22:48:17 GMT+0800",
+    "dateModified": "Fri Sep 29 2017 22:54:43 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Mark",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar2.jpg"
+        },
+        "description": "大口吃瓜 快意飞马"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Hexo",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "",
+    "description": "",
+}
+</script>
 
 
     
@@ -287,93 +320,259 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#从一个闭包问题谈起"><span class="post-toc-number">1.</span> <span class="post-toc-text">从一个闭包问题谈起</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#执行上下文-Execution-Context"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">执行上下文( Execution Context )</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#变量对象-Variable-Object"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">变量对象( Variable Object )</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#作用域链-Scope"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">作用域链( Scope )</span></a></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2016/03/09/Hello-world-0/">Hello world!!</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            hexo和随想经历了一个下午+一个晚上的折腾，终于顺利地搭建好基于h...
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2016/03/09/Hello-world-0/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar2.jpg" width="44px" height="44px" alt="Mark's avatar">
-            </div>
-            <div>
-                <strong>Mark</strong>
-                <span>3月 09, 2016</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                从闭包谈回闭包
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar2.jpg" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Mark</strong>
+        <span>5月 27, 2016</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=从闭包谈回闭包&url=http://yoursite.com/2016/05/27/从闭包谈回闭包/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=从闭包谈回闭包&url=http://yoursite.com/2016/05/27/从闭包谈回闭包/index.html&via=Mark" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2016/05/27/从闭包谈回闭包/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2016/05/27/从闭包谈回闭包/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="从一个闭包问题谈起"><a href="#从一个闭包问题谈起" class="headerlink" title="从一个闭包问题谈起"></a>从一个闭包问题谈起</h2><p>接触闭包到现在也有一段时间了。虽然不能说不知道闭包是什么，但也只是懂得高程上说的“闭包是指有权访问另一个函数作用域里的变量的函数，创建闭包的常见方式是在一个函数里创建另一个函数。”，知道闭包能访问父函数里的变量。（后来发现这样说是错误的。）但是，心里一直有一个疑问，到底闭包是怎么访问到“父级函数”里的变量的？不找不知道，一找吓一跳。<br>没想到，这背后的缘由还真不简单啊。接下来我就把我所理解的原因一一讲解出来。</p>
+<p>首先给出结论：<br>闭包之所以能够访问外部函数的变量，是因为其调用时的作用域链，不仅包含了自己的活动对象（变量对象），还包含了外部函数的变量对象。变量对象与作用域链都是执行上下文的一个属性，与执行上下文紧密相关。</p>
+<p>这里面涉及到三个概念：执行上下文，变量对象和作用域链。我们来好好捋一捋：</p>
+<h3 id="执行上下文-Execution-Context"><a href="#执行上下文-Execution-Context" class="headerlink" title="执行上下文( Execution Context )"></a>执行上下文( Execution Context )</h3><p>执行上下文，也叫执行环境，分为全局，函数和 eval （这里暂且不谈）三类。</p>
+<p>全局的执行上下文在js载入的时候就已经产生，退出程序后才销毁。<br>每当一个函数被调用，就产生了一个它的执行上下文。这个执行上下文是一个类似于栈的结构，栈顶是当前活动的执行上下文，栈底是全局的执行上下文，而中间就是外部函数的执行上下文（可能有多个，由作用域链一层层往上，直至全局）。每当调用一个函数，该函数的执行上下文就被推到栈的前端，在执行完毕后，栈将其环境弹出，环境被销毁，该环境里的函数和变量定义也被销毁。<br>当JS代码被浏览器载入后，默认进入全局的执行上下文，而当在全局执行上下文调用一个函数时，引擎就为该函数创建一个执行上下文，并将其压入执行上下文栈的顶端。浏览器执行的总是位于顶端的执行上下文，当其被执行完毕，就会从栈的顶部被弹出。然后浏览器就会回到它之前的执行下上文去执行代码。</p>
+<h3 id="变量对象-Variable-Object"><a href="#变量对象-Variable-Object" class="headerlink" title="变量对象( Variable Object )"></a>变量对象( Variable Object )</h3><p>前文已经说到，执行上下文在调用时被建立，那么执行上下文是如何建立的呢？这里就不<br>得不谈到变量对象了。函数执行上下文的创建分为两个阶段：</p>
+<ul>
+<li>进入执行环境阶段（已进入其执行环境，但环境内代码未执行）<br>在这个阶段：浏览器做了三件事：<br>建立变量，函数，arguments对象，参数，（但未对变量赋值，包括函数表达式）保存在变量对象中。变量对象被添加到 [[scope]] 前端，在作用域链中位于第一位。<br>建立作用域链<br>确定 this 的值<br>在这个时候，函数的执行上下文对应的变量对象，先后包括：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>保存的变量</th>
+<th>保存的形式</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数形参</td>
+<td>形参名：对应值</td>
+<td></td>
+</tr>
+<tr>
+<td>函数声明</td>
+<td>函数名：函数体</td>
+<td>函数声明提升，如果存在同名，即形参里有同名，则覆盖形参</td>
+</tr>
+<tr>
+<td>变量声明</td>
+<td>变量名：undefined</td>
+<td>变量声明提升，如果存在同名，即形参或函数有同名，则被忽略</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>代码执行阶段<br>变量赋值，函数引用和执行其他代码<br>当这两个阶段都完成，函数的执行上下文也就被创建。<br>那么全局的执行上下文呢？前文说过，全局的执行上下文在加载JS代码时就已经创建，这时候，全局的变量对象也被创建，里面包含：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">global = &#123;</div><div class="line">  Math: </div><div class="line">  String: </div><div class="line">  ...</div><div class="line">  ...</div><div class="line">  window: global</div><div class="line">&#125;;</div><div class="line">Math, String, Date等等属性被初始化，这也是我们在全局代码里的所有地方都能使用它们的根本原因。</div><div class="line"></div><div class="line">看到这里，是不是有点累了？文字再多，不如一段代码小试牛刀：</div><div class="line">如果这段代码你能理解，”变量对象”也就了然于胸啦。</div><div class="line"></div><div class="line">console.log(x); //function x()&#123;&#125;, 函数声明提升至VO里</div><div class="line"></div><div class="line">var x = 10; // 命名冲突，x被忽略</div><div class="line">console.log(x); //执行阶段赋值，此时 x = 10</div><div class="line">x = 20; //执行阶段赋值，此时 x = 20</div><div class="line"></div><div class="line">function x()&#123;&#125;; //执行阶段忽略</div><div class="line">console.log(x); // x = 20</div><div class="line"></div><div class="line">if (true) &#123;</div><div class="line">    var a = 1;  //变量声明，VO里保存为undefined</div><div class="line">&#125;else &#123; </div><div class="line">    var b = 2;  //变量声明，VO里保存为undefined</div><div class="line">&#125;  </div><div class="line"></div><div class="line">console.log(a); //执行阶段赋值， a = 1</div><div class="line">console.log(b); //依然为undefined</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="作用域链-Scope"><a href="#作用域链-Scope" class="headerlink" title="作用域链( Scope )"></a>作用域链( Scope )</h3><p>这里先摘抄高程闭包章节里的一段话：</p>
+<p>在创建函数时，会创建一个预先包含全局变量对象的作用域链，这个作用域链被保存在函数内部的 [[scope]] 属性中。当调用函数时，会为函数创建一个执行上下文，然后通过复制函数的 [[scope]] 属性中的对象构建起执行上下文的作用域链。此后，又有一个活动对象（在此作变量对象使用）被创建并推入执行上下文作用域链的前端。此时，其作用域链包含两个变量对象：本地活动对象和全局变量对象。</p>
+<p>这里指的是在全局环境创建、调用函数的情况，如果在函数内部再创建、调用函数呢？<br>那么这段话就应该这么改：</p>
+<p>在创建函数时，会创建一个预先包含外部函数变量对象和全局变量对象的作用域链，这个作用域链被保存在函数内部的 [[scope]] 属性中。当调用函数时，会为函数创建一个执行上下文，然后通过复制函数的 [[scope]] 属性中的对象构建起执行上下文的作用域链。此后，又有一个活动对象（在此作变量对象使用）被创建并推入执行上下文作用域链的前端。此时，其作用域链包含的变量对象：本地活动对象（栈顶）、外部函数变量对象和全局变量对象（栈底）</p>
+<p>如果，在函数内部的函数里，再创建、调用函数呢？<br>我猜你也已经想到了答案，那么，作用域链的作用 （好绕） 你也应该清楚了。</p>
+<p>作用域链是内部函数环境所有变量对象的列表，它的本质是一个指向变量对象的指针列表，它只引用但不实际包含变量对象。内部函数根据作用域链所保存的外部函数变量对象，来访问外部函数的变量！</p>
+<p>由一个闭包问题结束</p>
+<p>看到这里，三大巨头的介绍就已经完毕了。再回过头看结论，也大概能清楚了。那么这时候，让我们回到一个经典的闭包问题，这个问题不仅高程里提到过，网络上各种提问也是层出不穷，且看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//我要隔一秒输出一个i的值</div><div class="line">for (var i = 1; i &lt;= 5; i++) &#123;</div><div class="line">    setTimeout( function()&#123;</div><div class="line">        console.log( i );</div><div class="line">    &#125;, i*1000 );</div><div class="line">&#125;</div><div class="line">//然而现实却是：每隔1秒输出1个6</div></pre></td></tr></table></figure>
+<p>为什么都是6？因为JavaScript是单线程执行的，只有循环结束以后，setTimeout 中指定的函数才会被异步执行。所以，在上面的代码中，5次循环，将会有5个函数被异步执行，然而这5个函数全部指向同一个 i 变量，它们在本地活动对象里找不到 i，就通过作用域链往上找，在外部函数（也就是全局）变量对象找到了 i，但此时循环已结束，i 的值已经是6了。<br>这里提供一种解决办法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">for (var i = 1; i &lt;= 5; i++) &#123;</div><div class="line">    (function(arg)&#123;</div><div class="line">        setTimeout(function()&#123;</div><div class="line">            console.log(arg);</div><div class="line">        &#125;, arg*1000 );</div><div class="line">    &#125;)(i)；</div><div class="line">&#125;// 1 2 3 4 5</div></pre></td></tr></table></figure>
+<p>通过声明一个立即调用函数，将 i 作为实参传进setTimeout，这时立即调用函数的变量对象里多了一个arg，它的值为 i，因为参数是按值传递的，所以每个 setTimeout 里的匿名函数可通过作用域链访问到每个 arg 的值，也就是 i。</p>
+<p>绕了一圈，我们又讲回到了闭包，但这次是不是豁然开朗得多了呢？<br>然而，关于闭包，还有许多更深入的内容，比如函数的 [[scope]] 和执行上下文的 scope 之间的异同；比如作用域的细分。这些都过于繁杂，出于我的能力以及本文篇幅的限制，在此就不展开了。</p>
+
+        
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2016/05/19/JS-动画学习笔记/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
