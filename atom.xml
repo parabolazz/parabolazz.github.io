@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-01-20T15:23:46.000Z</updated>
+  <updated>2018-11-13T15:39:00.804Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Canvas 学习笔记</title>
+    <link href="http://yoursite.com/2018/11/05/Canvas%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2018/11/05/Canvas 学习笔记/</id>
+    <published>2018-11-05T15:53:03.000Z</published>
+    <updated>2018-11-13T15:39:00.804Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>在使用 canvas 之前，需要使用 getContext 获取上下文。<br>在 js 里获取了 canvas 元素以后，我们可以用下面的方法取到 canvas 的上下文，这是 canvas 一切操作的基础。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line"><span class="comment">// 第一个参数可以是 2d/webgl/webg2，后两者代表的是 3 维上下文</span></div></pre></td></tr></table></figure></p><p>获取了 canvas 上下文，我们就可以进行下面的各种神奇操作啦~</p><h2 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h2><p>路径是画图的基础，当你要开始画一个图形的时候，首先你需要开启一条路径。当一个图形完成的时候，你需要闭合这个路径。PS：</p><ol><li>当你画矩形（fillRect/strokeRect）的时候，不需要手动开启路径。</li><li>当你使用 fill 方法的时候，不需要手动闭合这个路径，因为 fill 会自动帮你闭合。</li></ol><h3 id="开始路径-beginPath"><a href="#开始路径-beginPath" class="headerlink" title="开始路径 beginPath"></a>开始路径 beginPath</h3><p>beginPath 顾名思义，是用来开启一个路径的。<br>但是它却是一个挺让人迷糊的功能，刚开始接触它的时候可能会认为有的时候不写 beginPath，代码也 work。这里的原因就在于：<strong>当你使用 fillRect/strokeRect 这种独立画出区域的函数，是不受 beginPath 影响的。</strong></p><p>moveTo()、lineTo()、fill()、stroke()、quadricCurveTo()、bezierCurveTo()、arcTo() 以及 arc() 等等都会受到 beginPath 的影响。比如：fill/stroke 都会以“上一次beginPath”之后的所有路径为基础进行绘制。</p><h3 id="闭合路径-closePath"><a href="#闭合路径-closePath" class="headerlink" title="闭合路径 closePath"></a>闭合路径 closePath</h3><p>closePath 虽然名字看起来像是用来结束一个路径的，但实际上它却<strong>只是用来闭合路径</strong>的。但我们使用 stroke （线条）来描绘图形时，由于他它不像 fill 那样会自动闭合，所以如果想得到一个封闭的图形，就需要使用 closePath 来手动闭合。<a href="https://www.cnblogs.com/xuehaoyue/p/6549682.html" target="_blank" rel="external">参考这里</a></p><h2 id="画图基础"><a href="#画图基础" class="headerlink" title="画图基础"></a>画图基础</h2><p>在进行真正的画图之前，我们需要知道一些画图的基础，比如移动画笔、填充颜色。</p><h3 id="moveTo-x-y"><a href="#moveTo-x-y" class="headerlink" title="moveTo(x,y)"></a>moveTo(x,y)</h3><p>将画笔移动到 (x, y) 点的位置，用于画不连续图形的时候改变画笔位置</p><h3 id="fill-stroke-和-fillStyle-strokeStyle-color"><a href="#fill-stroke-和-fillStyle-strokeStyle-color" class="headerlink" title="fill/stroke() 和 fillStyle/strokeStyle(color)"></a>fill/stroke() 和 fillStyle/strokeStyle(<em>color</em>)</h3><p>这两个方法很像，fill 用于填充整个画出来的图形，并隐式闭合路径。storke 用于线条描绘画出来的图形，但不闭合路径，所以 <strong>storke 需要与 closePath 结合来闭合路径</strong><br>它们都有自己配置颜色的方法：<code>fillStyle/strokeStyle</code></p><h2 id="画图方法"><a href="#画图方法" class="headerlink" title="画图方法"></a>画图方法</h2><p>在 canvas 里面，我们可以直接画出矩形、圆形、线条和文字。</p><ul><li>fillRect/strokeRect(x, y, w, h) 以 x,y<br>为左上角画出宽为 w, 高为 h 的矩形</li><li>arc(x, y, radius, startAngle, endAngle, direction)<br>以 x,y 为圆心， radius 为半径， direction 为方向，从 sAngle 到 eAngle 画出一段弧线。当 eAngle 为 <strong>Math.PI*2</strong> 时，它就是一个圆形。</li><li>lineTo(x,y)<br>从当前位置画出一条到 x, y 点的线条</li><li>fillText/strokeText(text, x, y) 绘制文字</li></ul><p>拥有了以上了基础，我们便可以画出一些较为基础的 canvas 图形啦。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;开始&quot;&gt;&lt;a href=&quot;#开始&quot; class=&quot;headerlink&quot; title=&quot;开始&quot;&gt;&lt;/a&gt;开始&lt;/h2&gt;&lt;p&gt;在使用 canvas 之前，需要使用 getContext 获取上下文。&lt;br&gt;在 js 里获取了 canvas 元素以后，我们可以用下面的
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Vue 模板编译</title>
