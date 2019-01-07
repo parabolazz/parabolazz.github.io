@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>Mark 的猜想</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-11-13T15:57:30.718Z</updated>
+  <updated>2019-01-07T09:55:00.207Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Canvas 学习笔记</title>
-    <link href="http://yoursite.com/2018/11/05/Canvas%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://yoursite.com/2018/11/05/Canvas 学习笔记/</id>
-    <published>2018-11-05T15:53:03.000Z</published>
-    <updated>2018-11-13T15:57:30.718Z</updated>
+    <title>次世代 HTTP -- HTTPS/HTTP 2.0</title>
+    <link href="http://yoursite.com/2018/11/01/%E6%AC%A1%E4%B8%96%E4%BB%A3%20HTTP/"/>
+    <id>http://yoursite.com/2018/11/01/次世代 HTTP/</id>
+    <published>2018-11-01T14:48:17.000Z</published>
+    <updated>2019-01-07T09:55:00.207Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>在使用 canvas 之前，需要使用 getContext 获取上下文。<br>在 js 里获取了 canvas 元素以后，我们可以用下面的方法取到 canvas 的上下文，这是 canvas 一切操作的基础。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line"><span class="comment">// 第一个参数可以是 2d/webgl/webg2，后两者代表的是 3 维上下文</span></div></pre></td></tr></table></figure></p><p>获取了 canvas 上下文，我们就可以进行下面的各种神奇操作啦~</p><h2 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h2><p>路径是画图的基础，当你要开始画一个图形的时候，首先你需要开启一条路径。当一个图形完成的时候，你需要闭合这个路径。PS：</p><ol><li>当你画矩形（fillRect/strokeRect）的时候，不需要手动开启路径。</li><li>当你使用 fill 方法的时候，不需要手动闭合这个路径，因为 fill 会自动帮你闭合。</li></ol><h3 id="开始路径-beginPath"><a href="#开始路径-beginPath" class="headerlink" title="开始路径 beginPath"></a>开始路径 beginPath</h3><p>beginPath 顾名思义，是用来开启一个路径的。<br>但是它却是一个挺让人迷糊的功能，刚开始接触它的时候可能会认为有的时候不写 beginPath，代码也 work。这里的原因就在于：<strong>当你使用 fillRect/strokeRect 这种独立画出区域的函数，是不受 beginPath 影响的。</strong></p><p>moveTo()、lineTo()、fill()、stroke()、quadricCurveTo()、bezierCurveTo()、arcTo() 以及 arc() 等等都会受到 beginPath 的影响。比如：fill/stroke 都会以“上一次beginPath”之后的所有路径为基础进行绘制。</p><h3 id="闭合路径-closePath"><a href="#闭合路径-closePath" class="headerlink" title="闭合路径 closePath"></a>闭合路径 closePath</h3><p>closePath 虽然名字看起来像是用来结束一个路径的，但实际上它却<strong>只是用来闭合路径</strong>的。但我们使用 stroke （线条）来描绘图形时，由于他它不像 fill 那样会自动闭合，所以如果想得到一个封闭的图形，就需要使用 closePath 来手动闭合。<a href="https://www.cnblogs.com/xuehaoyue/p/6549682.html" target="_blank" rel="external">参考这里</a></p><h2 id="画图基础"><a href="#画图基础" class="headerlink" title="画图基础"></a>画图基础</h2><p>在进行真正的画图之前，我们需要知道一些画图的基础，比如移动画笔、填充颜色。</p><h3 id="moveTo-x-y"><a href="#moveTo-x-y" class="headerlink" title="moveTo(x,y)"></a>moveTo(x,y)</h3><p>将画笔移动到 (x, y) 点的位置，用于画不连续图形的时候改变画笔位置</p><h3 id="fill-stroke-和-fillStyle-strokeStyle-color"><a href="#fill-stroke-和-fillStyle-strokeStyle-color" class="headerlink" title="fill/stroke() 和 fillStyle/strokeStyle(color)"></a>fill/stroke() 和 fillStyle/strokeStyle(<em>color</em>)</h3><p>这两个方法很像，fill 用于填充整个画出来的图形，并隐式闭合路径。storke 用于线条描绘画出来的图形，但不闭合路径，所以 <strong>storke 需要与 closePath 结合来闭合路径</strong><br>它们都有自己配置颜色的方法：<code>fillStyle/strokeStyle</code></p><h2 id="画图方法"><a href="#画图方法" class="headerlink" title="画图方法"></a>画图方法</h2><p>在 canvas 里面，我们可以直接画出矩形、圆形、线条和文字。</p><ul><li>fillRect/strokeRect(x, y, w, h) 以 x,y<br>为左上角画出宽为 w, 高为 h 的矩形</li><li>arc(x, y, radius, startAngle, endAngle, direction)<br>以 x,y 为圆心， radius 为半径， direction 为方向，从 sAngle 到 eAngle 画出一段弧线。当 eAngle 为 <strong>Math.PI*2</strong> 时，它就是一个圆形。</li><li>lineTo(x,y)<br>从当前位置画出一条到 x, y 点的线条</li><li>fillText/strokeText(text, x, y) 绘制文字</li></ul><p>拥有了以上了基础，我们便可以画出一些较为基础的 canvas 图形了~</p>]]></content>
+    <content type="html"><![CDATA[<p>作为一个前端，在 2018 年你肯定听过或者已经使用了 HTTPS 和 HTTP 2.0，如果你还没了解过的话，那我让我带你一探究竟吧~</p><h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>超文本传输协议 – HTTP，是被广泛使用的用于 Web 浏览器和服务器之间通信的一个协议，它是无状态协议，不会在请求与请求之间保存状态和数据，通常基于 TCP/IP 层。</p><p>HTTP 从一开始的 0.9 版本，发展到 1.0/1.1 版本，其中经历了缓存处理的改进、method 的增加和长连接的支持等等。HTTP 1.x 版本已经被使用超过了 20 年，直至今天还仍然被广泛采用。但是，随着互联网的飞速发展，这个版本存在着一些问题：</p><ul><li>基于 TCP/IP 的<strong>明文传输</strong>，可能会被<strong>窃听</strong>，缺少身份验证与加密，可能会被<strong>伪装</strong>，无法证明报文的完整，可能会被<strong>篡改</strong>，无法保证数据的安全性。</li><li><strong>队头阻塞</strong>（head of line blocking），浏览器发出的请求都需要排队，依次进行处理和响应。</li><li><strong>连接无法复用</strong>，每次请求都需要重新建立连接，都必须经过三次握手和慢启动，分别影响高延迟和大文件请求的场景。</li></ul><p>安全问题首当其冲，在 1994 年的时候，为传输安全保驾护航的 HTTPS 诞生了。</p><h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS (HTTP over SSL/TLS)，严格地讲，并不是一个单独的协议，而是对工作在一加密连接（TLS 或 SSL）上的常规 HTTP 协议的称呼。HTTP 先与 SSL 通讯，再有 SSL 和 TCP 通讯。</p><p><img src="https://user-gold-cdn.xitu.io/2018/12/8/1678e2204e3be8da?w=519&amp;h=348&amp;f=jpeg&amp;s=14834" alt="图片"></p><p>HTTPS = HTTP + 加密 + 认证 + 完整性保护</p><h3 id="HTTPS-加密的原理？"><a href="#HTTPS-加密的原理？" class="headerlink" title="HTTPS 加密的原理？"></a>HTTPS 加密的原理？</h3><p>前面说到 HTTPS 是 over SSL 的，那么也就是说经过了 SSL 这一加密处理方式进行了通信过程的加密。</p><p>HTTPS 的加密包括了对称与非对称加密。由于对称加密，秘钥容易被泄露，而非对称加密解密的过程耗时又长，所以索性把这两者结合，<strong>利用非对称加密来加密对称加密的秘钥</strong>，即利用了非对称加密安全性高的特点，又利用了对称加密速度快，效率高的好处。也就是所谓的<strong>混合加密</strong>。</p><ul><li><p>非对称加密</p><ul><li>首先，服务端保有公钥和私钥，提供公钥向数字认证机构申请证书，将证书发送给客户端</li><li>客户端利用浏览器内置的 CA 公钥去解密证书</li><li>如果证书没问题，客户端生成一个对称加密的随机秘钥，再利用刚刚解密的<strong>服务器端的公钥对随机秘钥进行加密</strong>，发送给服务器端</li><li>服务端利用自己的私钥解密，得到随机秘钥</li></ul></li><li><p>对称加密</p><ul><li>之后客户端和服务端会利用这个非对称加密加密过的随机秘钥，对之后的请求进行对称加密。</li></ul></li></ul><p>如此一来，HTTPS 便解决了安全问题：</p><ul><li>所有信息都是加密传播，黑客无法窃听。</li><li>具有校验机制，一旦被篡改，通信双方会立刻发现。</li><li>配备身份证书，防止身份被冒充。</li></ul><p>PS: 为什么 12306 改版以前，证书那块会显示一个红叉？</p><ol><li>根证书不被操作系统信任，需要自行安装证书。</li><li>其证书使用了不安全的 sha1 算法，未能通过浏览器验证。</li></ol><hr><p>解决完安全问题，我们来看看速度与延迟问题是如何被解决的。</p><h2 id="搅局者-SPDY"><a href="#搅局者-SPDY" class="headerlink" title="搅局者 SPDY"></a>搅局者 SPDY</h2><p>2012 年，Google 提出 SPDY，为 HTTP 2.0 的诞生奠定了一个十分扎实的基础，（HTTP 2.0 的主要设计思想源自于 SPDY）它提出：</p><ul><li><p>多路复用（multiplexing）</p><p>HTTP 1.x 在一条 TCP 连接上，多个请求只能串行执行。而 SPDY 使多个请求 stream 共享一个 tcp 连接的方式，做到了同时响应多个请求，解决了队头阻塞的问题。</p></li><li><p>请求优先级（request prioritization）</p><p>控制多路复用的请求优先级（例如设置 CSS 的优先级比图片高）</p></li><li><p>header 压缩</p><p>顾名思义，对 header 进行压缩。HTTP1.x 的 header 很多时候都是重复多余的。选择合适的压缩算法可以减小包的大小和数量。SPDY 对 header 的压缩率可以达到 80% 以上，低带宽环境下效果很大，对解决慢启动问题也有帮助。</p></li><li><p>服务端推送（server push）</p><p>服务端能够更快的把资源推送给客户端。</p></li><li><p>强制使用 HTTPS</p></li></ul><h2 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP 2.0"></a>HTTP 2.0</h2><p>在 SPDY 的基础之上，HTTP 2.0 诞生了，为了给 HTTP 2.0 铺路，Google 甚至在后期停止对 SPDY 的支持。HTTP 2.0 可以说是 SPDY 的升级版，看看以下特性你就知道了：</p><ul><li><p>多路复用</p><p>HTTP 2.0 让每个 request 对应一个 stream 并分配一个 id，通过一个连接多 stream 的方式，每个 stream 的 frame 可以随机的混杂在一起，并发响应。</p></li></ul><p><img src="https://user-gold-cdn.xitu.io/2018/12/8/1678e2204e294f6c?w=690&amp;h=684&amp;f=jpeg&amp;s=59691" alt="多路复用"></p><ul><li>header 压缩</li><li>服务端推送</li></ul><p>HTTP 2.0 与 SPDY 不同的地方</p><ul><li>新的二进制格式</li><li>支持明文传输</li><li>hedaer 压缩算法与 SPDY 不同</li></ul><hr><p>讲了这么多，希望能增强你对 HTTPS 和 HTTP 2.0 的了解。如有错误，恳请斧正！</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;作为一个前端，在 2018 年你肯定听过或者已经使用了 HTTPS 和 HTTP 2.0，如果你还没了解过的话，那我让我带你一探究竟吧~&lt;/p&gt;
+&lt;h2 id=&quot;HTTP&quot;&gt;&lt;a href=&quot;#HTTP&quot; class=&quot;headerlink&quot; title=&quot;HTTP&quot;&gt;&lt;/
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Canvas 学习笔记</title>
+    <link href="http://yoursite.com/2018/08/05/Canvas%20%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2018/08/05/Canvas 学习笔记/</id>
+    <published>2018-08-05T15:53:03.000Z</published>
+    <updated>2019-01-07T09:31:01.822Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>在使用 canvas 之前，需要使用 getContext 获取上下文。<br>在 js 里获取了 canvas 元素以后，我们可以用下面的方法取到 canvas 的上下文，这是 canvas 一切操作的基础。</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</div><div class="line"><span class="comment">// 第一个参数可以是 2d/webgl/webg2，后两者代表的是 3 维上下文</span></div></pre></td></tr></table></figure><p>获取了 canvas 上下文，我们就可以进行下面的各种神奇操作啦~</p><h2 id="路径"><a href="#路径" class="headerlink" title="路径"></a>路径</h2><p>路径是画图的基础，当你要开始画一个图形的时候，首先你需要开启一条路径。当一个图形完成的时候，你需要闭合这个路径。PS：</p><ol><li>当你画矩形（fillRect/strokeRect）的时候，不需要手动开启路径。</li><li>当你使用 fill 方法的时候，不需要手动闭合这个路径，因为 fill 会自动帮你闭合。</li></ol><h3 id="开始路径-beginPath"><a href="#开始路径-beginPath" class="headerlink" title="开始路径 beginPath"></a>开始路径 beginPath</h3><p>beginPath 顾名思义，是用来开启一个路径的。<br>但是它却是一个挺让人迷糊的功能，刚开始接触它的时候可能会认为有的时候不写 beginPath，代码也 work。这里的原因就在于：<strong>当你使用 fillRect/strokeRect 这种独立画出区域的函数，是不受 beginPath 影响的。</strong></p><p>moveTo()、lineTo()、fill()、stroke()、quadricCurveTo()、bezierCurveTo()、arcTo() 以及 arc() 等等都会受到 beginPath 的影响。比如：fill/stroke 都会以“上一次 beginPath”之后的所有路径为基础进行绘制。</p><h3 id="闭合路径-closePath"><a href="#闭合路径-closePath" class="headerlink" title="闭合路径 closePath"></a>闭合路径 closePath</h3><p>closePath 虽然名字看起来像是用来结束一个路径的，但实际上它却<strong>只是用来闭合路径</strong>的。但我们使用 stroke （线条）来描绘图形时，由于他它不像 fill 那样会自动闭合，所以如果想得到一个封闭的图形，就需要使用 closePath 来手动闭合。<a href="https://www.cnblogs.com/xuehaoyue/p/6549682.html" target="_blank" rel="external">参考这里</a></p><h2 id="画图基础"><a href="#画图基础" class="headerlink" title="画图基础"></a>画图基础</h2><p>在进行真正的画图之前，我们需要知道一些画图的基础，比如移动画笔、填充颜色。</p><h3 id="moveTo-x-y"><a href="#moveTo-x-y" class="headerlink" title="moveTo(x,y)"></a>moveTo(x,y)</h3><p>将画笔移动到 (x, y) 点的位置，用于画不连续图形的时候改变画笔位置</p><h3 id="fill-stroke-和-fillStyle-strokeStyle-color"><a href="#fill-stroke-和-fillStyle-strokeStyle-color" class="headerlink" title="fill/stroke() 和 fillStyle/strokeStyle(color)"></a>fill/stroke() 和 fillStyle/strokeStyle(<em>color</em>)</h3><p>这两个方法很像，fill 用于填充整个画出来的图形，并隐式闭合路径。storke 用于线条描绘画出来的图形，但不闭合路径，所以 <strong>storke 需要与 closePath 结合来闭合路径</strong><br>它们都有自己配置颜色的方法：<code>fillStyle/strokeStyle</code></p><h2 id="画图方法"><a href="#画图方法" class="headerlink" title="画图方法"></a>画图方法</h2><p>在 canvas 里面，我们可以直接画出矩形、圆形、线条和文字。</p><ul><li>fillRect/strokeRect(x, y, w, h) 以 x,y<br>为左上角画出宽为 w, 高为 h 的矩形</li><li>arc(x, y, radius, startAngle, endAngle, direction)<br>以 x,y 为圆心， radius 为半径， direction 为方向，从 sAngle 到 eAngle 画出一段弧线。当 eAngle 为 <strong>Math.PI*2</strong> 时，它就是一个圆形。</li><li>lineTo(x,y)<br>从当前位置画出一条到 x, y 点的线条</li><li>fillText/strokeText(text, x, y) 绘制文字</li></ul><p>拥有了以上了基础，我们便可以画出一些较为基础的 canvas 图形了~</p>]]></content>
     
     <summary type="html">
     
