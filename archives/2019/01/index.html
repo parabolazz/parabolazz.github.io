@@ -37,7 +37,7 @@
     
     <title>
         
-            次世代 HTTP -- HTTPS/HTTP 2.0 | 
+            归档: 2019/1 | 
         
         Mark 的猜想
     </title>
@@ -235,18 +235,15 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="次世代 HTTP -- HTTPS/HTTP 2.0 | Mark 的猜想">
+    <meta property="og:title" content="归档: 2019/1 | Mark 的猜想">
     <meta property="og:image" content="http://yoursite.com/img/favicon.png" />
     <meta property="og:description" content="">
     
 
     
-        <meta property="article:published_time" content="Thu Nov 01 2018 22:48:17 GMT+0800" />
-        <meta property="article:modified_time" content="Mon Jan 07 2019 17:55:00 GMT+0800" />
-    
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="次世代 HTTP -- HTTPS/HTTP 2.0 | Mark 的猜想">
+    <meta name="twitter:title" content="归档: 2019/1 | Mark 的猜想">
     <meta name="twitter:description" content="">
     <meta name="twitter:image" content="http://yoursite.com/img/favicon.png">
     <meta name="twitter:card" content="summary_large_image" />
@@ -254,43 +251,13 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/2018/11/01/次世代 HTTP/index.html" />
+        <link rel="canonical" href="http://yoursite.com/archives/2019/01/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
-
-<script type="application/ld+json">
-{
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "mainEntityOfPage": "http://yoursite.com/2018/11/01/次世代 HTTP/index.html",
-    "headline": "次世代 HTTP -- HTTPS/HTTP 2.0",
-    "datePublished": "Thu Nov 01 2018 22:48:17 GMT+0800",
-    "dateModified": "Mon Jan 07 2019 17:55:00 GMT+0800",
-    "author": {
-        "@type": "Person",
-        "name": "Mark",
-        "image": {
-            "@type": "ImageObject",
-            "url": "/img/avatar2.jpg"
-        },
-        "description": "一个不太会写代码的人"
-    },
-    "publisher": {
-        "@type": "Organization",
-        "name": "Mark 的猜想",
-        "logo": {
-            "@type":"ImageObject",
-            "url": "/img/favicon.png"
-        }
-    },
-    "keywords": "",
-    "description": "",
-}
-</script>
 
 
     
@@ -408,29 +375,25 @@
 
                     
 
-                    <!-- Post TOC -->
+                    <!-- Index Module -->
+<div class="material-index mdl-grid">
+    
+    <div class="locate-thumbnail-symbol"></div>
 
+    <!-- Pin on top -->
     
 
-
-
-<!-- Layouts -->
-
-    <!-- Post Module -->
-    <div class="material-post_container">
-
-        <div class="material-post mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-
-                <!-- Post Header(Thumbnail & Title) -->
-                
-
-
-    <!-- Isolation Post Header -->
-    <!-- Post thumbnail -->
+    <!-- Normal Post -->
+    
+        
+            
+            
+                <!-- Isolation Thumbnail -->
+                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
+    <!-- Post_entry Header -->
     
         <!-- Post Header Info -->
-        <div class="post-header_info without-thumbnail">
+        <div class="post_entry-header_info without-thumbnail">
             <!-- Author Avatar & Name -->
             <img src="/img/avatar2.jpg" class="avatar-img" width="44px" height="44px" alt="Mark's avatar">
             <span class="name-span">Mark</span>
@@ -441,146 +404,52 @@
     
         </div>
 
+    <!-- Post_entry Content -->
+    <div class="post_entry-content mdl-color-text--grey-600 mdl-card__supporting-text">
+        <!-- Post Title -->
+        <p class="post_entry-title">
+            <a href="/2019/01/08/Flag of 2019/">Flag of 2019</a>
+        </p>
 
-
-                
-
-                <!-- Post Content -->
-                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
-    
-
-    
-        <div class="post-content_wrapper">
-            <p class="post-title">
-                次世代 HTTP -- HTTPS/HTTP 2.0
-            </p>
-            <p>作为一个前端，在 2018 年你肯定听过或者已经使用了 HTTPS 和 HTTP 2.0，如果你还没了解过的话，那我让我带你一探究竟吧~</p>
-<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>超文本传输协议 – HTTP，是被广泛使用的用于 Web 浏览器和服务器之间通信的一个协议，它是无状态协议，不会在请求与请求之间保存状态和数据，通常基于 TCP/IP 层。</p>
-<p>HTTP 从一开始的 0.9 版本，发展到 1.0/1.1 版本，其中经历了缓存处理的改进、method 的增加和长连接的支持等等。HTTP 1.x 版本已经被使用超过了 20 年，直至今天还仍然被广泛采用。但是，随着互联网的飞速发展，这个版本存在着一些问题：</p>
-<ul>
-<li>基于 TCP/IP 的<strong>明文传输</strong>，可能会被<strong>窃听</strong>，缺少身份验证与加密，可能会被<strong>伪装</strong>，无法证明报文的完整，可能会被<strong>篡改</strong>，无法保证数据的安全性。</li>
-<li><strong>队头阻塞</strong>（head of line blocking），浏览器发出的请求都需要排队，依次进行处理和响应。</li>
-<li><strong>连接无法复用</strong>，每次请求都需要重新建立连接，都必须经过三次握手和慢启动，分别影响高延迟和大文件请求的场景。</li>
-</ul>
-<p>安全问题首当其冲，在 1994 年的时候，为传输安全保驾护航的 HTTPS 诞生了。</p>
-<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS (HTTP over SSL/TLS)，严格地讲，并不是一个单独的协议，而是对工作在一加密连接（TLS 或 SSL）上的常规 HTTP 协议的称呼。HTTP 先与 SSL 通讯，再有 SSL 和 TCP 通讯。</p>
-<p><img src="https://user-gold-cdn.xitu.io/2018/12/8/1678e2204e3be8da?w=519&amp;h=348&amp;f=jpeg&amp;s=14834" alt="图片"></p>
-<p>HTTPS = HTTP + 加密 + 认证 + 完整性保护</p>
-<h3 id="HTTPS-加密的原理？"><a href="#HTTPS-加密的原理？" class="headerlink" title="HTTPS 加密的原理？"></a>HTTPS 加密的原理？</h3><p>前面说到 HTTPS 是 over SSL 的，那么也就是说经过了 SSL 这一加密处理方式进行了通信过程的加密。</p>
-<p>HTTPS 的加密包括了对称与非对称加密。由于对称加密，秘钥容易被泄露，而非对称加密解密的过程耗时又长，所以索性把这两者结合，<strong>利用非对称加密来加密对称加密的秘钥</strong>，即利用了非对称加密安全性高的特点，又利用了对称加密速度快，效率高的好处。也就是所谓的<strong>混合加密</strong>。</p>
-<ul>
-<li><p>非对称加密</p>
-<ul>
-<li>首先，服务端保有公钥和私钥，提供公钥向数字认证机构申请证书，将证书发送给客户端</li>
-<li>客户端利用浏览器内置的 CA 公钥去解密证书</li>
-<li>如果证书没问题，客户端生成一个对称加密的随机秘钥，再利用刚刚解密的<strong>服务器端的公钥对随机秘钥进行加密</strong>，发送给服务器端</li>
-<li>服务端利用自己的私钥解密，得到随机秘钥</li>
-</ul>
-</li>
-<li><p>对称加密</p>
-<ul>
-<li>之后客户端和服务端会利用这个非对称加密加密过的随机秘钥，对之后的请求进行对称加密。</li>
-</ul>
-</li>
-</ul>
-<p>如此一来，HTTPS 便解决了安全问题：</p>
-<ul>
-<li>所有信息都是加密传播，黑客无法窃听。</li>
-<li>具有校验机制，一旦被篡改，通信双方会立刻发现。</li>
-<li>配备身份证书，防止身份被冒充。</li>
-</ul>
-<p>PS: 为什么 12306 改版以前，证书那块会显示一个红叉？</p>
-<ol>
-<li>根证书不被操作系统信任，需要自行安装证书。</li>
-<li>其证书使用了不安全的 sha1 算法，未能通过浏览器验证。</li>
-</ol>
-<hr>
-<p>解决完安全问题，我们来看看速度与延迟问题是如何被解决的。</p>
-<h2 id="搅局者-SPDY"><a href="#搅局者-SPDY" class="headerlink" title="搅局者 SPDY"></a>搅局者 SPDY</h2><p>2012 年，Google 提出 SPDY，为 HTTP 2.0 的诞生奠定了一个十分扎实的基础，（HTTP 2.0 的主要设计思想源自于 SPDY）它提出：</p>
-<ul>
-<li><p>多路复用（multiplexing）</p>
-<p>HTTP 1.x 在一条 TCP 连接上，多个请求只能串行执行。而 SPDY 使多个请求 stream 共享一个 tcp 连接的方式，做到了同时响应多个请求，解决了队头阻塞的问题。</p>
-</li>
-<li><p>请求优先级（request prioritization）</p>
-<p>控制多路复用的请求优先级（例如设置 CSS 的优先级比图片高）</p>
-</li>
-<li><p>header 压缩</p>
-<p>顾名思义，对 header 进行压缩。HTTP1.x 的 header 很多时候都是重复多余的。选择合适的压缩算法可以减小包的大小和数量。SPDY 对 header 的压缩率可以达到 80% 以上，低带宽环境下效果很大，对解决慢启动问题也有帮助。</p>
-</li>
-<li><p>服务端推送（server push）</p>
-<p>服务端能够更快的把资源推送给客户端。</p>
-</li>
-<li><p>强制使用 HTTPS</p>
-</li>
-</ul>
-<h2 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP 2.0"></a>HTTP 2.0</h2><p>在 SPDY 的基础之上，HTTP 2.0 诞生了，为了给 HTTP 2.0 铺路，Google 甚至在后期停止对 SPDY 的支持。HTTP 2.0 可以说是 SPDY 的升级版，看看以下特性你就知道了：</p>
-<ul>
-<li><p>多路复用</p>
-<p>HTTP 2.0 让每个 request 对应一个 stream 并分配一个 id，通过一个连接多 stream 的方式，每个 stream 的 frame 可以随机的混杂在一起，并发响应。</p>
-</li>
-</ul>
-<p><img src="https://user-gold-cdn.xitu.io/2018/12/8/1678e2204e294f6c?w=690&amp;h=684&amp;f=jpeg&amp;s=59691" alt="多路复用"></p>
-<ul>
-<li>header 压缩</li>
-<li>服务端推送</li>
-</ul>
-<p>HTTP 2.0 与 SPDY 不同的地方</p>
-<ul>
-<li>新的二进制格式</li>
-<li>支持明文传输</li>
-<li>hedaer 压缩算法与 SPDY 不同</li>
-</ul>
-<hr>
-<p>讲了这么多，希望能增强你对 HTTPS 和 HTTP 2.0 的了解。如有错误，恳请斧正！</p>
+        <!-- Post Excerpt -->
+        <p class="post_entry-excerpt">
+            
+                今天身体抱恙，发了点低烧，所以请假在家。人呐，一闲下来就开始胡思乱想，这不我就开始回顾自己的 2018 了。
 
             
-        </div>
-    
-</div>
+            &nbsp;&nbsp;&nbsp;
+            <span>
+                <a href="/2019/01/08/Flag of 2019/" target="_self">阅读全文</a>
+            </span>
+        </p>
 
-
-                
-                    <!-- Paradox Post Info -->
-                    
-                
-
-                <!-- Post Comments -->
-                
-                    
-                
-            </div>
-
-            <!-- Post Prev & Next Nav -->
-            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-    <!-- Prev Nav -->
-    
-        <a href="/2019/01/08/Flag of 2019/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
-
-    <!-- Section Spacer -->
-    <div class="section-spacer"></div>
-
-    <!-- Next Nav -->
-    
-        <a href="/2018/08/05/Canvas 学习笔记/" id="post_nav-older" class="next-content">
-            旧篇
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_forward</i>
-            </button>
-        </a>
-    
-</nav>
-
-        </div>
+        <!-- Post Tags -->
+        
     </div>
 
+    <!-- Post_entry Footer -->
+    <div class="post_entry-footer">
+        <div class="post_entry-footer-border"></div>
+        <div class="post_entry-footer-info">
+            <div class="post_entry-footer-date">
+                1月 08, 2019
+            </div>
+            <div class="post_entry-footer-comment">
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+            
+        
+    
+
+    
+
+    
+</div>
 
 
                     
