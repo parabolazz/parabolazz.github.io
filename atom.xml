@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-09T15:14:19.544Z</updated>
+  <updated>2019-01-26T11:12:12.040Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>卡死吧！标签页</title>
+    <link href="http://yoursite.com/2019/01/25/%E4%B8%80%E8%B5%B7%E6%9D%A5%E8%AE%A9%E6%A0%87%E7%AD%BE%E9%A1%B5%E5%8D%A1%E6%AD%BB%E5%90%A7%EF%BC%81/"/>
+    <id>http://yoursite.com/2019/01/25/一起来让标签页卡死吧！/</id>
+    <published>2019-01-25T15:26:39.000Z</published>
+    <updated>2019-01-26T11:12:12.040Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近接到了一个很让人崩溃的 bug：页面用着用着卡死了！这可着实是个不小的 bug，首先得看看是怎么回事：</p><p>我们的页面移植了一个原本是 React 版本的第三方标注工具(labeling tool)，用于做多边形的标注，但是当标注的多边形多了起来以后，再次标注，页面就会卡死。浏览器甚至会提示「页面已崩溃」…</p><p>那么问题来了，怎么样找到卡死的原因呢？</p><h1 id="缩小范围"><a href="#缩小范围" class="headerlink" title="缩小范围"></a>缩小范围</h1><p>一般来讲，我们认为卡死的原因会有两个：内存泄露和 CPU 密集计算。</p><p>首先我想从内存占用量入手，目标是在页面卡死的时候，使用 Chrome 的 devtool/Memory 查看内存，并且进行快照。然而现实是凄凉的，当页面卡死的时候，整个 Memory 也进入了崩溃状态，并不理会你的操作…</p><p>那么…还有其他查看网页占用内存的方法么？</p><p>既然 Chrome 里每个 tab 页是一个独立的进程，那么我们是不是可以通过查看系统的资源管理器（macOS 下的活动监视器）查看当前 tab 的内存占用呢？答案是肯定的！下图每一行的 Google Chrome Helper 就是对应 Chrome 的一个 tab。</p><p><img src="http://wx4.sinaimg.cn/mw690/7cd9fb9fgy1fzk3a1lzgij20x60kqjy3.jpg" alt="内存查看"></p><p>通过当时的内存查看，该 tab 的内存占用与其他 tab 并无大差异，这里就能得出应该不是内存泄漏导致的。接下来就得从 CPU 密集计算这一点入手了，那要怎么找突破点呢？诶！macOS 的「活动监视器」下除了「内存」也有 「CPU」项，是不是可以看到 tab 的 CPU 占用？</p><p>一找果然吓一跳，那个 Google Chrome Helper 的进程赫然写着 100% 的 CPU 占用。这下让我感觉离问题的答案越来越近了！因为 100% 的 CPU 占用最有可能的就是无限的循环调用！但是，前文说到我在用 Chrome 的 devtool 寻找卡死时的调用信息的时候，devtool 也随之崩溃了…那是不是就无解了？</p><p>非也非也！</p><h1 id="锁定目标"><a href="#锁定目标" class="headerlink" title="锁定目标"></a>锁定目标</h1><p>当我在 Google 搜寻 javascript infinite loop debug 字眼的时候，发现了 Google 开发者网站的<a href="https://developers.google.com/web/updates/2018/04/devtools#stop" target="_blank" rel="external">这样一个帖子</a>。</p><p>简而言之，Chrome 在 67 版本以后， 增加了一个「Stop infinite loops」的功能：当页面停止响应的时候，点击「开启断点」的按钮，此时 Chrome 会自动 debug 到发生无限循环的那一步代码。此时再长按「跳过断点」的那个按钮，会出现一个方块停止符号。点击那个符号，Chrome 会非常智能地帮你跳过这个无线循环！</p><p>这不正是我要的功能吗！</p><p>于是操作一通，果然发现了问题：我们移植过来的代码库里，每当用 canvas 画一条新的线段，它都会对每一个已存在的点所构成的线进行判断，看你的新线段是否与旧线段重合，这个逻辑在 for 循环里做了一个递归，递归的回退条件没写好，导致当点多的时候，网页就卡死了。找到了原因，接下来就可以开始着手修改啦~</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近接到了一个很让人崩溃的 bug：页面用着用着卡死了！这可着实是个不小的 bug，首先得看看是怎么回事：&lt;/p&gt;
+&lt;p&gt;我们的页面移植了一个原本是 React 版本的第三方标注工具(labeling tool)，用于做多边形的标注，但是当标注的多边形多了起来以后，再次标注
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Flag of 2019</title>
